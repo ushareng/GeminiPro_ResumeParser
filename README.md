@@ -1,4 +1,4 @@
-# GeminiPro_ResumeParser
+# Building Resume Parser using Gemini Pro
 
 The recruitment landscape is constantly evolving, and keeping up with the influx of resumes can be a daunting task. Enter resume parsers, automated tools that extract key information from resumes and streamline the selection process. While traditional parsers often fall short in handling diverse formats and nuanced language, Gemini Pro, a powerful language model from Google, offers a promising solution.
 
