@@ -17,4 +17,5 @@ Gemini Pro boasts several advantages that make it ideal for resume parsing:
 
 * Scalability and Efficiency: Gemini Pro is designed for scalability. Its architecture allows for easy distribution across multiple machines, enabling it to handle large datasets and complex tasks. Additionally, MoE contributes to efficient processing and inference, making it suitable for real-world applications.
 
-![](https://imgur.com/45rGbIl)
+![6705808b](https://github.com/ushareng/GeminiPro_ResumeParser/assets/34335028/e86a218f-ca48-4fef-85df-3c85cb1fd6ab)
+
