@@ -23,4 +23,5 @@ Gemini Pro boasts several advantages that make it ideal for resume parsing:
 
 Demo on Hugging Face - https://huggingface.co/spaces/tensorgirl/gemini_resume_parser
 
+![6f0d7ed1](https://github.com/ushareng/GeminiPro_ResumeParser/assets/34335028/8c9494c8-0256-4131-bfd6-653c485de6a4)
 
