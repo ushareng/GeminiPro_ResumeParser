@@ -1,0 +1,45 @@
+.bg-color {
+    background-color: #000;
+    color: #fff;
+}
+p {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+input[type="file"] {
+    display: none;
+  }
+  
+  .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+.smart-resume-block {
+  width: 65%;
+  margin: 0 auto;
+}
+.file-drag-wrapper {
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 10px;
+  border: 1px solid grey;
+  margin-top: 10px;
+}
+.upload-resume-block {
+  padding-top: 20px;
+}
+.textarea-wrapper {
+  width: 100%;
+  border-radius: 5px;
+  background: #939393;
+  outline: none;
+}
+.file-name-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

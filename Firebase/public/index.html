@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body class="bg-color">
+    <div class="smart-resume-block">
+        <h2>Smart Resume Parser</h2>
+        <div>
+            <textarea name="textarea" id="textarea" class="textarea-wrapper"></textarea>
+        </div>
+        <div class="upload-resume-block">
+            <p>Upload Your Resume</p>
+            <div class="file-drag-wrapper">
+                <div>
+                    <div>
+                        <p>Drag and drop file here</p>
+                        <p>Limit 200MB per file PDF</p>
+                    </div>
+                </div>
+                <div>
+                    <label for="file-upload" class="custom-file-upload" >
+                        Browse your files
+                    </label>
+                    <input id="file-upload" type="file" accept="application/pdf"/>
+                </div>
+            </div>
+        </div>
+        <div class="file-name-wrapper">
+          <div id="file-name">  
+          </div>
+          <div id="svg-close">
+          </div>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+<script type="module">
+    let upload = document.getElementById('file-upload');
+    let close = document.getElementById('svg-close');
+    let jsonData;
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js'
+
+    // Add Firebase products that you want to use
+    import { getFirestore, collection, addDoc, query, where, getDocs, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'
+    import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js';
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKbjtUoj1WtLMsBjpOfkrl8wzF4vhZPXM",
+      authDomain: "geminiresumeparser.firebaseapp.com",
+      projectId: "geminiresumeparser",
+      storageBucket: "geminiresumeparser.appspot.com",
+      messagingSenderId: "926802254153",
+      appId: "1:926802254153:web:a9395451ca969ea748a298",
+      measurementId: "G-PN7X10DV8T"
+    };
+
+    const firebase = initializeApp(firebaseConfig);
+    const functions = getFunctions(firebase);
+    const resumeParser = httpsCallable(functions, 'resumeParser');
+       
+
+    function pdfFile() {
+        let files, response, url, fileData;
+        url="https://us-central1-geminiresumeparser.cloudfunctions.net/resumeParser";
+        fileData = document.getElementById('file-upload');
+        let file = fileData.files[0];
+
+        let formData = new FormData();
+        formData.append('file', file);
+        console.log(formData, file);
+        document.getElementById('file-name').innerHTML = file.name;
+        document.getElementById('svg-close').innerHTML= '<svg width="40" height="40" viewbox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30" stroke="white" stroke-width="4" /></svg>';
+        console.log(url, 'url');
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {console.log(response); return response.text()})
+        .then(data => {console.log(data, 'data'); document.getElementById('result').innerHTML = data;})
+        .catch(error => console.error('Error:', error));
+    }
+
+    function closeIcon() {
+      document.getElementById('file-name').innerHTML = '';
+      document.getElementById('svg-close').innerHTML = '';
+      upload.value = '';
+      document.getElementById('result').innerHTML = '';
+    }
+
+    // Event listener assignment inside the module scope
+    upload.addEventListener('change', pdfFile);
+    close.addEventListener('click', closeIcon);
+</script>
+</html>
