@@ -10,6 +10,7 @@
     <div class="smart-resume-block">
         <h2>Smart Resume Parser</h2>
         <div>
+            <label>Add the Job Description</label>
             <textarea name="textarea" id="textarea" class="textarea-wrapper"></textarea>
         </div>
         <div class="upload-resume-block">
@@ -35,6 +36,14 @@
           <div id="svg-close">
           </div>
         </div>
+        <div id="submit-btn">
+            <button type="button" class="submit-wrapper" id="submit" disabled>Submit</button>
+        </div>
+        <div class="overlay" id="overlay"></div>
+        <div class="spanner" id="spanner">
+        <div class="loader"></div>
+        <p>Uploading file, please be patient.</p>
+        </div>
         <div id="result">
         </div>
     </div>
@@ -42,6 +51,7 @@
 <script type="module">
     let upload = document.getElementById('file-upload');
     let close = document.getElementById('svg-close');
+    let submitBtn = document.getElementById('submit-btn');
     let jsonData;
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js'
 
@@ -63,26 +73,28 @@
     const firebase = initializeApp(firebaseConfig);
     const functions = getFunctions(firebase);
     const resumeParser = httpsCallable(functions, 'resumeParser');
-       
+    let files, response, url, fileData;
 
+    
     function pdfFile() {
-        let files, response, url, fileData;
         url="https://us-central1-geminiresumeparser.cloudfunctions.net/resumeParser";
         fileData = document.getElementById('file-upload');
         let file = fileData.files[0];
-
         let formData = new FormData();
         formData.append('file', file);
-        console.log(formData, file);
-        document.getElementById('file-name').innerHTML = file.name;
-        document.getElementById('svg-close').innerHTML= '<svg width="40" height="40" viewbox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30" stroke="white" stroke-width="4" /></svg>';
+        document.getElementById('overlay').classList.add('show');
+        document.getElementById('spanner').classList.add('show');
         console.log(url, 'url');
         fetch(url, {
             method: 'POST',
             body: formData
         })
         .then(response => {console.log(response); return response.text()})
-        .then(data => {console.log(data, 'data'); document.getElementById('result').innerHTML = data;})
+        .then(data => {console.log(data, 'data');  
+        document.getElementById('overlay').classList.remove('show');
+        document.getElementById('spanner').classList.remove('show'); 
+        document.getElementById('result').innerHTML = data;
+    })
         .catch(error => console.error('Error:', error));
     }
 
@@ -91,10 +103,24 @@
       document.getElementById('svg-close').innerHTML = '';
       upload.value = '';
       document.getElementById('result').innerHTML = '';
+
+    }
+
+    function showFileName() {
+        fileData = document.getElementById('file-upload');
+        let file = fileData.files[0];
+        let formData = new FormData();
+        formData.append('file', file);
+        console.log(formData, file);
+        document.getElementById('file-name').innerHTML = file.name;
+        document.getElementById('submit').removeAttribute('disabled');
+        document.getElementById('svg-close').innerHTML= '<svg width="40" height="40" viewbox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30" stroke="white" stroke-width="4" /></svg>';
+
     }
 
     // Event listener assignment inside the module scope
-    upload.addEventListener('change', pdfFile);
+    upload.addEventListener('change', showFileName);
+    submitBtn.addEventListener('click', pdfFile);
     close.addEventListener('click', closeIcon);
 </script>
 </html>
