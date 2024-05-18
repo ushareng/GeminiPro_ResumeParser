@@ -1,27 +1,59 @@
-# Building Resume Parser using Gemini Pro
+# Resume Parser Firebase & Web using Gemini Pro
 
-The recruitment landscape is constantly evolving, and keeping up with the influx of resumes can be a daunting task. Enter resume parsers, automated tools that extract key information from resumes and streamline the selection process. While traditional parsers often fall short in handling diverse formats and nuanced language, Gemini Pro, a powerful language model from Google, offers a promising solution.
+The Resume Parser App is an Firebase & Web application built with Jetpack Compose that utilizes Gemini Pro to parse resumes based on the job description and selected file.
 
-This blog will guide you through the exciting world of building your own resume parser with Gemini Pro. Buckle up, job-hunting enthusiasts and tech-savvy individuals, as we dive into the code and explore the potential of this revolutionary tool!
+## Features
 
-## Why Gemini Pro?
+- **Job Description Matching**: Match the parsed resume with a provided job description to evaluate suitability.
+- **Resume Parsing**: Upload a resume file and parse it to extract relevant information
 
-![6705808b](https://github.com/ushareng/GeminiPro_ResumeParser/assets/34335028/e86a218f-ca48-4fef-85df-3c85cb1fd6ab)
+## Technology
 
-Gemini Pro boasts several advantages that make it ideal for resume parsing:
+- HTML, CSS, JavaScript, Cloud functions, firebase auth
 
-* Natural Language Processing (NLP) prowess: It understands the context and intent behind words, making it adept at handling diverse writing styles and formats.
-* Flexibility: Gemini Pro integrates seamlessly with various platforms and tools, allowing for easy deployment and integration.
-* Decoder-only Transformer: Unlike traditional encoders that analyze input, Gemini Pro adopts a decoder-only architecture. This means it focuses on generating text based on the provided context, allowing for efficient processing and inference on specialized hardware like TPUs.
+## Getting Started
 
-* Multimodal Capabilities: While many models handle text alone, Gemini Pro shines in its ability to process various formats, including text, code, and images. This is achieved by representing each modality in a unified space, enabling the model to understand and generate across different domains.
+### Prerequisites
 
-* Mixture of Experts (MoE): This innovative technique tackles the challenge of scaling large models efficiently. Essentially, MoE divides the model into smaller, specialized "expert" networks. Based on the input, only the relevant experts are activated, leading to significant performance gains and resource savings.
+- Node version already installed v.18
 
-* Scalability and Efficiency: Gemini Pro is designed for scalability. Its architecture allows for easy distribution across multiple machines, enabling it to handle large datasets and complex tasks. Additionally, MoE contributes to efficient processing and inference, making it suitable for real-world applications.
+### Installation
+
+1. Clone the repository:
+
+    ```
+    git clone https://github.com/priyaljain919/GeminiPro_ResumeParser.git
+    ```
+
+2. Navigate to the project directory:
+
+   ```
+   cd GeminiPro_ResumeParser/Firebase
+   ```
+
+3. Open the project in Visual studio or any code editor
+
+4. Install Firebase cli tools -> 
+    - npm install -g firebase-tools
+    - frebase init
+    - select hosting with spacebar 
+    - choose project geminiresumeparser
+
+4. Do all the installations: 
+    - npm install inside Firebase directory
+    - npm install inside Firebase/functions
+
+5. firebase deploy
+
+## Usage
+1. **Enter Job Description**: Enter the job description into the provided text field.
+2. **Select Resume**: Click on the "Select File" button to choose a resume file from your device.
+3. **Parse Resume**: Click on the "Submit" button to parse the selected resume.
+4. **Get the Result**:  Get the resume evaluation.
+
+## Demo
+https://www.loom.com/share/e942a3879038415dae62f707fb074dce?sid=a8d8c42f-e42f-419c-89e9-3c8ec2df8ce1
 
 
-Demo on Hugging Face - https://huggingface.co/spaces/tensorgirl/gemini_resume_parser
-
-![6f0d7ed1](https://github.com/ushareng/GeminiPro_ResumeParser/assets/34335028/8c9494c8-0256-4131-bfd6-653c485de6a4)
-
+## Developers
+[Priyal Jain](https://www.linkedin.com/in/priyaljain919/), [Shachita Jain](https://www.linkedin.com/in/shachita/)
